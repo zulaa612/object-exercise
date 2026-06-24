@@ -295,7 +295,7 @@ function sumValues(obj) {
   return total;
 }
 console.log(sumValues({ a: 1, b: 2, c: 3 }));
-console.log(sumValues({ x=10 }));
+console.log(sumValues({ x: 10 }));
 console.log(sumValues({ }));
 
 // console.log(sumValues({ a: 1, b: 2, c: 3 }));
@@ -308,6 +308,21 @@ console.log(sumValues({ }));
 // Hint: build a string; add ", " before every key except the first.
 // your code here
 
+function joinKeys(obj, separator= ", "){
+  result = "";
+  for(const key in obj){
+    console.log(obj[key]);
+    if(key < 0){
+      result += ", ";
+    }
+    result += obj[key];
+  }
+  return result; 
+}
+console.log(joinKeys({ a: 1, b: 2, c: 3 }));
+console.log(joinKeys({ name: 1, age: 1 }));
+console.log(joinKeys({ only: 1 }));
+
 // console.log(joinKeys({ a: 1, b: 2, c: 3 }));
 // TEST 1:  joinKeys({ a: 1, b: 2, c: 3 })       ->  "a, b, c"
 // TEST 2:  joinKeys({ name: 1, age: 1 })        ->  "name, age"
@@ -317,7 +332,9 @@ console.log(sumValues({ }));
 // Write `maxValue(obj)` that RETURNS the largest value. Assume at least one key.
 // Hint: start `best` from the first value (or -Infinity), then compare each value.
 // your code here
+function maxValue(obj){
 
+}
 // console.log(maxValue({ a: 5, b: 9, c: 2 }));
 // TEST 1:  maxValue({ a: 5, b: 9, c: 2 })     ->  9
 // TEST 2:  maxValue({ x: 7 })                 ->  7
