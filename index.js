@@ -310,18 +310,19 @@ console.log(sumValues({ }));
 
 function joinKeys(obj, separator= ", "){
   result = "";
+  count = 0;
   for(const key in obj){
-    console.log(obj[key]);
-    if(key < 0){
+    if(count > 0){
       result += ", ";
     }
-    result += obj[key];
+    result += key;
+    count++;
   }
   return result; 
 }
-console.log(joinKeys({ a: 1, b: 2, c: 3 }));
+console.log(joinKeys({a: 1, b: 2, c: 3 }));
 console.log(joinKeys({ name: 1, age: 1 }));
-console.log(joinKeys({ only: 1 }));
+console.log(joinKeys({ only: 1 })); 
 
 // console.log(joinKeys({ a: 1, b: 2, c: 3 }));
 // TEST 1:  joinKeys({ a: 1, b: 2, c: 3 })       ->  "a, b, c"
@@ -333,8 +334,19 @@ console.log(joinKeys({ only: 1 }));
 // Hint: start `best` from the first value (or -Infinity), then compare each value.
 // your code here
 function maxValue(obj){
+  best = -Infinity;
 
+  for (key in obj){
+    if (obj[key] > best){
+      best = obj[key];
+    }
+  }
+  return best;
 }
+console.log(maxValue({ a: 5, b: 9, c: 2 }));
+console.log(maxValue({ x: 7 }));
+console.log(maxValue({ a: -3, b: -1 }));
+
 // console.log(maxValue({ a: 5, b: 9, c: 2 }));
 // TEST 1:  maxValue({ a: 5, b: 9, c: 2 })     ->  9
 // TEST 2:  maxValue({ x: 7 })                 ->  7
@@ -344,6 +356,23 @@ function maxValue(obj){
 // Write `keyOfMax(obj)` that RETURNS the KEY whose value is largest (first one if tied).
 // Hint: track both bestKey and bestVal as you loop.
 // your code here
+
+function keyOfMax(obj){
+  bestKey = null;
+  bestVal = -Infinity;
+
+  for(currentKey in obj){
+    currentVal = obj[currentKey];
+    if(currentVal > bestVal){
+      bestVal = currentVal;
+      bestKey = currentKey;
+    }
+  }
+  return bestKey;
+}
+console.log(keyOfMax({ math: 80, art: 95, gym: 88 }));
+console.log(keyOfMax({ a: 5, b: 9, c: 2 }));
+console.log(keyOfMax({ only: 1}));
 
 // console.log(keyOfMax({ math: 80, art: 95, gym: 88 }));
 // TEST 1:  keyOfMax({ math: 80, art: 95, gym: 88 })  ->  "art"
