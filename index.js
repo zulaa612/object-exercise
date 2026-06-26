@@ -296,7 +296,7 @@ function sumValues(obj) {
 }
 console.log(sumValues({ a: 1, b: 2, c: 3 }));
 console.log(sumValues({ x: 10 }));
-console.log(sumValues({ }));
+console.log(sumValues({}));
 
 // console.log(sumValues({ a: 1, b: 2, c: 3 }));
 // TEST 1:  sumValues({ a: 1, b: 2, c: 3 })  ->  6
@@ -308,21 +308,21 @@ console.log(sumValues({ }));
 // Hint: build a string; add ", " before every key except the first.
 // your code here
 
-function joinKeys(obj, separator= ", "){
+function joinKeys(obj, separator = ", ") {
   result = "";
   count = 0;
-  for(const key in obj){
-    if(count > 0){
+  for (const key in obj) {
+    if (count > 0) {
       result += ", ";
     }
     result += key;
     count++;
   }
-  return result; 
+  return result;
 }
-console.log(joinKeys({a: 1, b: 2, c: 3 }));
+console.log(joinKeys({ a: 1, b: 2, c: 3 }));
 console.log(joinKeys({ name: 1, age: 1 }));
-console.log(joinKeys({ only: 1 })); 
+console.log(joinKeys({ only: 1 }));
 
 // console.log(joinKeys({ a: 1, b: 2, c: 3 }));
 // TEST 1:  joinKeys({ a: 1, b: 2, c: 3 })       ->  "a, b, c"
@@ -333,11 +333,11 @@ console.log(joinKeys({ only: 1 }));
 // Write `maxValue(obj)` that RETURNS the largest value. Assume at least one key.
 // Hint: start `best` from the first value (or -Infinity), then compare each value.
 // your code here
-function maxValue(obj){
+function maxValue(obj) {
   best = -Infinity;
 
-  for (key in obj){
-    if (obj[key] > best){
+  for (key in obj) {
+    if (obj[key] > best) {
       best = obj[key];
     }
   }
@@ -357,13 +357,13 @@ console.log(maxValue({ a: -3, b: -1 }));
 // Hint: track both bestKey and bestVal as you loop.
 // your code here
 
-function keyOfMax(obj){
+function keyOfMax(obj) {
   bestKey = null;
   bestVal = -Infinity;
 
-  for(currentKey in obj){
+  for (currentKey in obj) {
     currentVal = obj[currentKey];
-    if(currentVal > bestVal){
+    if (currentVal > bestVal) {
       bestVal = currentVal;
       bestKey = currentKey;
     }
@@ -372,7 +372,7 @@ function keyOfMax(obj){
 }
 console.log(keyOfMax({ math: 80, art: 95, gym: 88 }));
 console.log(keyOfMax({ a: 5, b: 9, c: 2 }));
-console.log(keyOfMax({ only: 1}));
+console.log(keyOfMax({ only: 1 }));
 
 // console.log(keyOfMax({ math: 80, art: 95, gym: 88 }));
 // TEST 1:  keyOfMax({ math: 80, art: 95, gym: 88 })  ->  "art"
@@ -391,6 +391,18 @@ console.log(keyOfMax({ only: 1}));
 //   if (counts[ch] === undefined) counts[ch] = 0;  counts[ch]++;
 // your code here
 
+function letterCount(word) {
+  counts = {};
+  for (i = 0; i < word.length; i++) {
+    ch = word[i];
+    if (counts[ch] === undefined) counts[ch] = 0;
+    counts[ch]++;
+  }
+  return counts;
+}
+console.log(letterCount("hello"));
+console.log(letterCount("aaa"));
+console.log(letterCount(""));
 // console.log(letterCount("hello"));
 // TEST 1:  letterCount("hello")  ->  { h: 1, e: 1, l: 2, o: 1 }
 // TEST 2:  letterCount("aaa")    ->  { a: 3 }
@@ -400,7 +412,19 @@ console.log(keyOfMax({ only: 1}));
 // Write `wordLengths(sentence)` that RETURNS an object mapping each word to its length.
 // Hint: sentence.split(" ") gives the words; loop them, set obj[word] = word.length.
 // your code here
-
+function wordLengths(sentence) {
+  words = sentence.split(" ");
+  obj = {};
+  for (i = 0; i < words.length; i++) {
+    word = words[i];
+    if (word === "") continue;
+    obj[word] = word.length;
+  }
+  return obj;
+}
+console.log(wordLengths("the cat sat"));
+console.log(wordLengths("hi there"));
+console.log(wordLengths("one"));
 // console.log(wordLengths("the cat sat"));
 // TEST 1:  wordLengths("the cat sat")  ->  { the: 3, cat: 3, sat: 3 }
 // TEST 2:  wordLengths("hi there")     ->  { hi: 2, there: 5 }
@@ -412,6 +436,21 @@ console.log(keyOfMax({ only: 1}));
 // add onto whatever is already there (start from 0 if absent).
 // your code here
 
+function mergeSums(a, b) {
+  result = {};
+  for (key in a) {
+    result[key] = a[key];
+  }
+  for (key in b) {
+    currentCount = result[key] || 0;
+    result[key] = currentCount + b[key];
+  }
+  return result;
+}
+console.log(mergeSums({ a: 1, b: 2 }, { b: 3, c: 4 }));
+console.log(mergeSums({}, { x: 9 }));
+console.log(mergeSums({ k: 2 }, {}));
+
 // console.log(mergeSums({ a: 1, b: 2 }, { b: 3, c: 4 }));
 // TEST 1:  mergeSums({ a: 1, b: 2 }, { b: 3, c: 4 })  ->  { a: 1, b: 5, c: 4 }
 // TEST 2:  mergeSums({}, { x: 9 })                    ->  { x: 9 }
@@ -422,7 +461,16 @@ console.log(keyOfMax({ only: 1}));
 // each key becomes its value. Assume values are unique strings/numbers.
 // Hint: out = {}; for (const k in obj) out[obj[k]] = k.
 // your code here
-
+function invert(obj) {
+  out = {};
+  for (k in obj) {
+    out[obj[k]] = k;
+  }
+  return out;
+}
+console.log(invert({ a: "x", b: "y" }));
+console.log(invert({ one: 1 }));
+console.log(invert({}));
 // console.log(invert({ a: "x", b: "y" }));
 // TEST 1:  invert({ a: "x", b: "y" })   ->  { x: "a", y: "b" }
 // TEST 2:  invert({ one: 1 })           ->  { "1": "one" }   (number value becomes a key)
@@ -436,7 +484,12 @@ console.log(keyOfMax({ only: 1}));
 // Write `cartTotal(cart)` where cart maps item -> price. RETURN the total by CALLING
 // your sumValues from exercise 13.
 // your code here
-
+function cartTotal(cart) {
+  return sumValues(cart);
+}
+console.log(cartTotal({ apple: 3, bread: 2, milk: 4 }));
+console.log(cartTotal({ oen: 1 }));
+console.log(cartTotal({}));
 // console.log(cartTotal({ apple: 3, bread: 2, milk: 4 }));
 // TEST 1:  cartTotal({ apple: 3, bread: 2, milk: 4 })  ->  9
 // TEST 2:  cartTotal({ pen: 1 })                       ->  1
@@ -446,7 +499,12 @@ console.log(keyOfMax({ only: 1}));
 // Write `mostExpensive(prices)` that RETURNS the item name with the highest price by
 // CALLING your keyOfMax from exercise 16.
 // your code here
-
+function mostExpensive(prices) {
+  return keyOfMax(prices);
+}
+console.log(mostExpensive({ apple: 3, bread: 2, milk: 4 }));
+console.log(mostExpensive({ a: 5, b: 9 }));
+console.log(mostExpensive({ only: 1 }));
 // console.log(mostExpensive({ apple: 3, bread: 2, milk: 4 }));
 // TEST 1:  mostExpensive({ apple: 3, bread: 2, milk: 4 })  ->  "milk"
 // TEST 2:  mostExpensive({ a: 5, b: 9 })                   ->  "b"
@@ -456,7 +514,19 @@ console.log(keyOfMax({ only: 1}));
 // Write `renameField(obj, oldKey, newKey)` that moves the value from oldKey to newKey
 // and RETURNS obj. Read the value, addField it under newKey, removeField the oldKey.
 // your code here
-
+function renameField(obj, oldKey, newKey) {
+  value = obj[oldKey];
+  addField(obj, newKey, value);
+  removeField(obj, oldKey);
+  return obj;
+}
+console.log(renameField({ name: "Sam", age: 20 }, "name", "fullName").fullName);
+console.log(
+  renameField({ name: "Sam", age: 20 }, "name", "fullName"),
+  "name",
+  "fullName",
+);
+console.log(renameField({ name: "Sam", age: 20 }, "name", "fullName").age);
 // console.log(renameField({ name: "Sam", age: 20 }, "name", "fullName"));
 // TEST 1:  renameField({ name: "Sam", age: 20 }, "name", "fullName").fullName  ->  "Sam"
 // TEST 2:  "name" in renameField({ name: "Sam", age: 20 }, "name", "fullName") ->  false
@@ -473,7 +543,23 @@ console.log(keyOfMax({ only: 1}));
 // If none, RETURN "". Hint: count every char into an object, then walk the word again
 // and return the first char whose count is 1.
 // your code here
-
+function firstUniqueChar(word) {
+  charCounts = {};
+  for (i = 0; i < word.length; i++) {
+    char = word[i];
+    charCounts[char] = (charCounts[char] || 0) + 1;
+  }
+  for (i = 0; i < word.length; i++) {
+    char = word[i];
+    if (charCounts[char] === 1) {
+      return char;
+    }
+  }
+  return "";
+}
+console.log(firstUniqueChar("leetcode"));
+console.log(firstUniqueChar("swiss"));
+console.log(firstUniqueChar("aabb"));
 // console.log(firstUniqueChar("leetcode"));
 // EXAMPLE 1:  firstUniqueChar("leetcode")  ->  "l"
 // EXAMPLE 2:  firstUniqueChar("swiss")     ->  "w"
@@ -484,6 +570,27 @@ console.log(keyOfMax({ only: 1}));
 // counts). Hint: if lengths differ -> false; count a into an object; walk b subtracting;
 // any count going negative or a missing key -> false.
 // your code here
+function areAnagrams(a, b) {
+  if (a.length !== b.length) {
+    return false;
+  }
+  counts = {};
+  for (i = 0; i < a.length; i++) {
+    char = a[i];
+    counts[char] = (counts[char] || 0) + 1;
+  }
+  for (i = 0; i < b.length; i++) {
+    char = b[i];
+    if (!counts[char]) {
+      return false;
+    }
+    counts[char]--;
+  }
+  return true;
+}
+console.log(areAnagrams("listen", "silent"));
+console.log(areAnagrams("hello", "world"));
+console.log(areAnagrams("a", "aa"));
 
 // console.log(areAnagrams("listen", "silent"));
 // EXAMPLE 1:  areAnagrams("listen", "silent")  ->  true
