@@ -296,7 +296,7 @@ function sumValues(obj) {
 }
 console.log(sumValues({ a: 1, b: 2, c: 3 }));
 console.log(sumValues({ x: 10 }));
-console.log(sumValues({}));
+console.log(sumValues({ }));
 
 // console.log(sumValues({ a: 1, b: 2, c: 3 }));
 // TEST 1:  sumValues({ a: 1, b: 2, c: 3 })  ->  6
@@ -308,21 +308,21 @@ console.log(sumValues({}));
 // Hint: build a string; add ", " before every key except the first.
 // your code here
 
-function joinKeys(obj, separator = ", ") {
+function joinKeys(obj, separator= ", "){
   result = "";
   count = 0;
-  for (const key in obj) {
-    if (count > 0) {
+  for(const key in obj){
+    if(count > 0){
       result += ", ";
     }
     result += key;
     count++;
   }
-  return result;
+  return result; 
 }
-console.log(joinKeys({ a: 1, b: 2, c: 3 }));
+console.log(joinKeys({a: 1, b: 2, c: 3 }));
 console.log(joinKeys({ name: 1, age: 1 }));
-console.log(joinKeys({ only: 1 }));
+console.log(joinKeys({ only: 1 })); 
 
 // console.log(joinKeys({ a: 1, b: 2, c: 3 }));
 // TEST 1:  joinKeys({ a: 1, b: 2, c: 3 })       ->  "a, b, c"
@@ -333,11 +333,11 @@ console.log(joinKeys({ only: 1 }));
 // Write `maxValue(obj)` that RETURNS the largest value. Assume at least one key.
 // Hint: start `best` from the first value (or -Infinity), then compare each value.
 // your code here
-function maxValue(obj) {
+function maxValue(obj){
   best = -Infinity;
 
-  for (key in obj) {
-    if (obj[key] > best) {
+  for (key in obj){
+    if (obj[key] > best){
       best = obj[key];
     }
   }
@@ -357,13 +357,13 @@ console.log(maxValue({ a: -3, b: -1 }));
 // Hint: track both bestKey and bestVal as you loop.
 // your code here
 
-function keyOfMax(obj) {
+function keyOfMax(obj){
   bestKey = null;
   bestVal = -Infinity;
 
-  for (currentKey in obj) {
+  for(currentKey in obj){
     currentVal = obj[currentKey];
-    if (currentVal > bestVal) {
+    if(currentVal > bestVal){
       bestVal = currentVal;
       bestKey = currentKey;
     }
@@ -372,7 +372,7 @@ function keyOfMax(obj) {
 }
 console.log(keyOfMax({ math: 80, art: 95, gym: 88 }));
 console.log(keyOfMax({ a: 5, b: 9, c: 2 }));
-console.log(keyOfMax({ only: 1 }));
+console.log(keyOfMax({ only: 1}));
 
 // console.log(keyOfMax({ math: 80, art: 95, gym: 88 }));
 // TEST 1:  keyOfMax({ math: 80, art: 95, gym: 88 })  ->  "art"
@@ -390,7 +390,6 @@ console.log(keyOfMax({ only: 1 }));
 // times it appears. Hint: counts = {}; for each char, if missing start at 0, then +1.
 //   if (counts[ch] === undefined) counts[ch] = 0;  counts[ch]++;
 // your code here
-
 function letterCount(word) {
   counts = {};
   for (i = 0; i < word.length; i++) {
@@ -403,6 +402,7 @@ function letterCount(word) {
 console.log(letterCount("hello"));
 console.log(letterCount("aaa"));
 console.log(letterCount(""));
+
 // console.log(letterCount("hello"));
 // TEST 1:  letterCount("hello")  ->  { h: 1, e: 1, l: 2, o: 1 }
 // TEST 2:  letterCount("aaa")    ->  { a: 3 }
@@ -435,7 +435,6 @@ console.log(wordLengths("one"));
 // key is in BOTH its values are added. Hint: copy a's keys in, then for b's keys
 // add onto whatever is already there (start from 0 if absent).
 // your code here
-
 function mergeSums(a, b) {
   result = {};
   for (key in a) {
@@ -450,7 +449,6 @@ function mergeSums(a, b) {
 console.log(mergeSums({ a: 1, b: 2 }, { b: 3, c: 4 }));
 console.log(mergeSums({}, { x: 9 }));
 console.log(mergeSums({ k: 2 }, {}));
-
 // console.log(mergeSums({ a: 1, b: 2 }, { b: 3, c: 4 }));
 // TEST 1:  mergeSums({ a: 1, b: 2 }, { b: 3, c: 4 })  ->  { a: 1, b: 5, c: 4 }
 // TEST 2:  mergeSums({}, { x: 9 })                    ->  { x: 9 }
@@ -499,12 +497,12 @@ console.log(cartTotal({}));
 // Write `mostExpensive(prices)` that RETURNS the item name with the highest price by
 // CALLING your keyOfMax from exercise 16.
 // your code here
-function mostExpensive(prices) {
+function mostExpensive(prices){
   return keyOfMax(prices);
 }
 console.log(mostExpensive({ apple: 3, bread: 2, milk: 4 }));
-console.log(mostExpensive({ a: 5, b: 9 }));
-console.log(mostExpensive({ only: 1 }));
+console.log(mostExpensive({ a: 5, b: 9}));
+console.log(mostExpensive({ only: 1}));
 // console.log(mostExpensive({ apple: 3, bread: 2, milk: 4 }));
 // TEST 1:  mostExpensive({ apple: 3, bread: 2, milk: 4 })  ->  "milk"
 // TEST 2:  mostExpensive({ a: 5, b: 9 })                   ->  "b"
@@ -521,12 +519,9 @@ function renameField(obj, oldKey, newKey) {
   return obj;
 }
 console.log(renameField({ name: "Sam", age: 20 }, "name", "fullName").fullName);
-console.log(
-  renameField({ name: "Sam", age: 20 }, "name", "fullName"),
-  "name",
-  "fullName",
-);
+console.log(renameField({ name: "Sam", age: 20 }, "name", "fullName"));
 console.log(renameField({ name: "Sam", age: 20 }, "name", "fullName").age);
+
 // console.log(renameField({ name: "Sam", age: 20 }, "name", "fullName"));
 // TEST 1:  renameField({ name: "Sam", age: 20 }, "name", "fullName").fullName  ->  "Sam"
 // TEST 2:  "name" in renameField({ name: "Sam", age: 20 }, "name", "fullName") ->  false
@@ -543,11 +538,11 @@ console.log(renameField({ name: "Sam", age: 20 }, "name", "fullName").age);
 // If none, RETURN "". Hint: count every char into an object, then walk the word again
 // and return the first char whose count is 1.
 // your code here
-function firstUniqueChar(word) {
+function firstUniqueChar(word){
   charCounts = {};
-  for (i = 0; i < word.length; i++) {
+  for (i = 0; i <word.length; i++){
     char = word[i];
-    charCounts[char] = (charCounts[char] || 0) + 1;
+    charCounts[char] = (charCounts[char] || 0)+1;
   }
   for (i = 0; i < word.length; i++) {
     char = word[i];
@@ -591,7 +586,6 @@ function areAnagrams(a, b) {
 console.log(areAnagrams("listen", "silent"));
 console.log(areAnagrams("hello", "world"));
 console.log(areAnagrams("a", "aa"));
-
 // console.log(areAnagrams("listen", "silent"));
 // EXAMPLE 1:  areAnagrams("listen", "silent")  ->  true
 // EXAMPLE 2:  areAnagrams("hello", "world")    ->  false
