@@ -596,6 +596,25 @@ console.log(areAnagrams("a", "aa"));
 // one whose count was reached first). Hint: build counts, then keyOfMax-style scan.
 // your code here
 
+function mostFrequentChar(word){
+  counts = {};
+  for (i = 0; i <word.length; i++){
+    char = word[i];
+    counts[char] = (counts[char] || 0)+1;
+  }
+  keys = Object.keys(counts);
+  maxChar = word[0];
+  for (i = 0; i < keys.length; i++) {
+    if(counts[keys[i]] > counts[maxChar]){
+      maxChar = keys[i]
+    }
+  }
+  return maxChar;
+}
+console.log(mostFrequentChar("banana"));
+console.log(mostFrequentChar("mississippi"));
+console.log(mostFrequentChar("abc"));
+
 // console.log(mostFrequentChar("banana"));
 // EXAMPLE 1:  mostFrequentChar("banana")        ->  "a"   (a:3 beats n:2, b:1)
 // EXAMPLE 2:  mostFrequentChar("mississippi")   ->  "i"   (i:4, s:4 tie — i seen first)
@@ -605,7 +624,18 @@ console.log(areAnagrams("a", "aa"));
 // Write `countWords(sentence)` -> an object mapping each word to how many times it
 // appears. Hint: split on " ", then count each word like the letter counter.
 // your code here
-
+function countWords(sentence){
+  counts = {}; 
+  words = sentence.split(" ");
+  for (i = 0; i < words.length; i++ ){
+    word = words[i];
+    counts[word] = (counts[word] || 0)+1;
+  }
+  return counts;
+}
+console.log(countWords("the cat the dog the"));
+console.log(countWords("hi hi"));
+console.log(countWords("one"));
 // console.log(countWords("the cat the dog the"));
 // EXAMPLE 1:  countWords("the cat the dog the")  ->  { the: 3, cat: 1, dog: 1 }
 // EXAMPLE 2:  countWords("hi hi")                ->  { hi: 2 }
@@ -615,7 +645,17 @@ console.log(areAnagrams("a", "aa"));
 // Write `distinctChars(word)` -> how many DIFFERENT characters the word has.
 // Hint: count chars into an object, then the answer is Object.keys(counts).length.
 // your code here
-
+function distinctChars(word){
+  counts = {};
+  for (i = 0; i < word.length; i++){
+    char = word[i];
+    counts[char] = (counts[char] || 0)+1;
+  }
+  return Object.keys(counts).length;
+}
+console.log(distinctChars("hello"));
+console.log(distinctChars("aaa"));
+console.log(distinctChars("abc"));
 // console.log(distinctChars("hello"));
 // EXAMPLE 1:  distinctChars("hello")  ->  4    (h, e, l, o)
 // EXAMPLE 2:  distinctChars("aaa")    ->  1
@@ -626,7 +666,20 @@ console.log(areAnagrams("a", "aa"));
 // it appears in a non-negative integer. Hint: peel digits with % 10 and Math.floor(/10),
 // counting each into the object just like letters.
 // your code here
-
+function digitFrequency(n){
+  counts = {};
+  if (n === 0 ) 
+    return {"0": 1};
+  while (n > 0){
+    digit = String(n % 10);
+    counts[digit] = (counts[digit] || 0)+1;
+    n = Math.floor(n/10);
+  }
+  return counts;
+}
+console.log(digitFrequency(1122333));
+console.log(digitFrequency(112));
+console.log(digitFrequency(5));
 // console.log(digitFrequency(1122333));
 // EXAMPLE 1:  digitFrequency(1122333)  ->  { "1": 2, "2": 2, "3": 3 }
 // EXAMPLE 2:  digitFrequency(112)      ->  { "1": 2, "2": 1 }
